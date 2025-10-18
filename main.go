@@ -66,6 +66,7 @@ func main() {
 		}
 		for line:= range getLinesChannel(con) {
 			fmt.Printf("read %s\n", line)
+			WriteLog(line + "\n")
 		}
 	}
 
