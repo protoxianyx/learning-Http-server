@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"os"
+	"net"
 )
 
-func getLinesChannel(f io.ReadCloser) <-chan string { //  very weird syntax, gotta investigate
-	out := make(chan string, 1)
+// ReadCloer closes read stream??? Yeah rihgt, this is the following thing done after oopening the file
+func getLinesChannel(f io.ReadCloser) <-chan string { //  very weird syntax, gotta investigate | got it! that is a send pipe
+	out := make(chan string, 1) // buffer making sure only one value passes though
 
 	go func() {
 		defer f.Close()
@@ -25,8 +26,11 @@ func getLinesChannel(f io.ReadCloser) <-chan string { //  very weird syntax, got
 			}
 
 			data = data[:n] // Again stores the value of the data from the start to the 8thth position. Which is T -> c | c to the 8th position upto the moto part whrer \n i sencountered
+
+
 			// fmt.Printf("data data: %s\n", data)
 			if i := bytes.IndexByte(data, '\n'); i != -1 { // skips this until matches the condition aka it shoudl end in the new line. | encounetrs \n
+				
 				str += string(data[:i]) //  at this poitn the str is the whole first line, adn the I position is the end of fthe new line
 				data = data[i+1:]
 
@@ -50,17 +54,19 @@ func getLinesChannel(f io.ReadCloser) <-chan string { //  very weird syntax, got
 func main() {
 
 	// reads a file and stores a error if there are any
-	f, err := os.Open("message.txt")
+	listener, err := net.Listen("tcp", ":3000")
 	if err != nil {
 		log.Fatal("error ", "error", err) // Find the reason why does this output needs two "error"
 	}
 
-	lines := getLinesChannel(f)
-
-	for line := range lines {
-		
-		fmt.Printf("second read: %s\n", line)
-
+	for {
+		con, err := listener.Accept()
+		if err != nil {
+			log.Fatal("error ", "error", err) // Find the reason why does this output needs two "error"
+		}
+		for line:= range getLinesChannel(con) {
+			fmt.Printf("read %s\n", line)
+		}
 	}
 
 }
