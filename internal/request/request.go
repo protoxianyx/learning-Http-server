@@ -19,7 +19,7 @@ type Request struct {
 
 var ERROR_MALFORMED_REQUEST_LINE = fmt.Errorf("malformed request-line")
 var ERROR_UNSUPPORTED_HTTP_VERSION = fmt.Errorf("unsupported http version")
-var SEPERATOR = "\r\n"
+var SEPERATOR = "\r\n" // got abysmal amount of errors becasue i put /r/n instead of \r\n Was just about to rage quit
 
 
 func parseRequestLine(b string) (*RequestLine, string, error){
