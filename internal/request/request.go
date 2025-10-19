@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"demoproject/internal/common"
 	
 )
 
@@ -36,9 +37,11 @@ func newRequest() *Request {
 var ErrorMalformedRequestLine = fmt.Errorf("malformed request-line")
 var ErrorUnsupportedHttpVersion = fmt.Errorf("unsupported http version")
 var ErrorRequestInErrorState = fmt.Errorf("request in Error state")
+
 var SEPERATOR = []byte("\r\n") // got abysmal amount of errors becasue i put /r/n instead of \r\n Was just about to rage quit
 
 func parseRequestLine(b []byte) (*RequestLine, int, error) {
+
 
 	idx := bytes.Index(b, SEPERATOR)
 	if idx == -1 {
@@ -68,6 +71,9 @@ func parseRequestLine(b []byte) (*RequestLine, int, error) {
 }
 
 func (r *Request) parse(data []byte) (int, error) {
+
+	common.WriteLog(string(data), "./../../Log.txt")
+
 
 	read := 0
 	outer: 

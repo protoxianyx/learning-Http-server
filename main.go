@@ -6,6 +6,8 @@ import (
 	"io"
 	"log"
 	"net"
+
+	"demoproject/internal/common"
 )
 
 // ReadCloer closes read stream??? Yeah rihgt, this is the following thing done after oopening the file
@@ -66,7 +68,7 @@ func main() {
 		}
 		for line:= range getLinesChannel(con) {
 			fmt.Printf("read %s\n", line)
-			WriteLog(line + "\n")
+			common.WriteLog(line + "\n", "./Log.txt")
 		}
 	}
 
