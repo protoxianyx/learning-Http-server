@@ -14,5 +14,5 @@ func WriteLog(s, filepath string) {
 
 	add()
 
-	file.WriteString(s)
+	file.WriteString("READLINE: " + "\n" + s + "\n")
 }

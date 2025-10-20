@@ -42,6 +42,8 @@ var SEPERATOR = []byte("\r\n") // got abysmal amount of errors becasue i put /r/
 
 func parseRequestLine(b []byte) (*RequestLine, int, error) {
 
+	common.WriteLog(string(b), "./../../Log.log")
+	
 
 	idx := bytes.Index(b, SEPERATOR)
 	if idx == -1 {
@@ -72,7 +74,6 @@ func parseRequestLine(b []byte) (*RequestLine, int, error) {
 
 func (r *Request) parse(data []byte) (int, error) {
 
-	common.WriteLog(string(data), "./../../Log.txt")
 
 
 	read := 0
