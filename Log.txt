@@ -1,4 +1,0 @@
-GETGET / GET / HTTGET / HTTP/1GET / HTTP/1.1GET / HTTP/1.1
-HoGGEGETGET GET /GET /cGET /coGET /cofGET /coffGET /coffeGET /coffeeGET /coffee GET /coffee HGET /coffee HTGET /coffee HTTGET /coffee HTTPGET /coffee HTTP/GET /coffee HTTP/1GET /coffee HTTP/1.GET /coffee HTTP/1.1GET /coffee HTTP/1.1GET /coffee HTTP/1.1
-GETGET / GET / HTTGET / HTTP/1GET / HTTP/1.1GET / HTTP/1.1
-HoGGEGETGET GET /GET /cGET /coGET /cofGET /coffGET /coffeGET /coffeeGET /coffee GET /coffee HGET /coffee HTGET /coffee HTTGET /coffee HTTPGET /coffee HTTP/GET /coffee HTTP/1GET /coffee HTTP/1.GET /coffee HTTP/1.1GET /coffee HTTP/1.1GET /coffee HTTP/1.1

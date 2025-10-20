@@ -68,7 +68,7 @@ func main() {
 		}
 		for line:= range getLinesChannel(con) {
 			fmt.Printf("read %s\n", line)
-			common.WriteLog(line + "\n", "./Log.txt")
+			common.WriteLog(line + "\n", "./Log.log")
 		}
 	}
 

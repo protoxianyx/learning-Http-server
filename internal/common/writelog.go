@@ -12,5 +12,7 @@ func WriteLog(s, filepath string) {
 	}
 	defer file.Close()
 
+	add()
+
 	file.WriteString(s)
 }
