@@ -94,6 +94,12 @@ func parseRequestLine(b []byte) (*RequestLine, int, error) {
 	return rl, read, nil
 }
 
+func (r *Request) hasBody() bool {
+	// TODO: when doing chuk encosing update thsi methord
+	length := getIntHeader(r.Headers, "content-length", 0)
+	return  length > 0
+}
+
 func (r *Request) parse(data []byte) (int, error) {
 
 	read := 0
@@ -137,13 +143,18 @@ func (r *Request) parse(data []byte) (int, error) {
 			read += n
 
 			if done {
-				r.state = stateBody
+				if r.hasBody() {
+
+					r.state = stateBody
+				} else {
+					r.state = stateDone
+				}
 			}
 
 		case stateBody:
 			length := getIntHeader(r.Headers, "content-length", 0)
 			if length == 0 {
-				r.state = stateDone
+				panic("chuncked not implimeted")
 				
 			}
 
