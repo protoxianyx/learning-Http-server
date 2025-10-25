@@ -144,7 +144,6 @@ func (r *Request) parse(data []byte) (int, error) {
 
 			if done {
 				if r.hasBody() {
-
 					r.state = stateBody
 				} else {
 					r.state = stateDone
